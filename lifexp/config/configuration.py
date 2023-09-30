@@ -1,7 +1,8 @@
 from lifexp.constants import *
 from lifexp.utils.common import read_yaml, create_directories
 from lifexp.entity import (DataIngestionConfig,DataValidationConfig,
-                           DataTransformationConfig,ModelTrainerConfig)
+                           DataTransformationConfig,ModelTrainerConfig,
+                           ModelEvaluationConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -61,7 +62,7 @@ class ConfigurationManager:
     
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer
-        params = self.params.ElasticNet
+        params = self.params.rfr
         schema =  self.schema.TARGET
 
         create_directories([config.root_dir])
@@ -71,10 +72,29 @@ class ConfigurationManager:
             train_data_path = config.train_data_path,
             test_data_path = config.test_data_path,
             model_name = config.model_name,
-            alpha = params.alpha,
-            l1_ratio = params.l1_ratio,
+            min_samples_split = params.min_samples_split,
+            min_samples_leaf = params.min_samples_leaf,
             target_column = schema.name
             
         )
 
         return model_trainer_config
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config.model_evaluation
+        params = self.params.rfr
+        schema =  self.schema.TARGET
+
+        create_directories([config.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=config.root_dir,
+            test_data_path=config.test_data_path,
+            model_path = config.model_path,
+            all_params=params,
+            metric_file_name = config.metric_file_name,
+            target_column = schema.name,
+           
+        )
+
+        return model_evaluation_config

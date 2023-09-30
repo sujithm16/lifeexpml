@@ -1,24 +1,24 @@
 from lifexp.config.configuration import ConfigurationManager
-from lifexp.components.data_transformation import DataTransformation
+from lifexp.components.model_evaluation import ModelEvaluation
 from lifexp import logger
 
 
-STAGE_NAME = "Data Transformation stage"
+STAGE_NAME = "Model evaluation stage"
 
-class DataTransformationTrainingPipeline:
+class modelEvaluationPipeline:
     def __init__(self):
         pass
 
     def main(self):
         config = ConfigurationManager()
-        data_transformation_config = config.get_data_transformation_config()
-        data_transformation = DataTransformation(config=data_transformation_config)
-        data_transformation.eda()
+        model_evaluation_config = config.get_model_evaluation_config()
+        model_evaluation_config = ModelEvaluation(config=model_evaluation_config)
+        model_evaluation_config.results()
         
 if __name__ == '__main__':
     try:
         logger.info(f">>>>>> {STAGE_NAME} started <<<<<<")
-        obj = DataTransformationTrainingPipeline()
+        obj = modelEvaluationPipeline()
         obj.main()
         logger.info(f">>>>>> {STAGE_NAME} completed <<<<<<")
     except Exception as e:
