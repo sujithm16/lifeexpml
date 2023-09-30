@@ -2,6 +2,8 @@ from lifexp import logger
 from lifexp.pipeline.stage1_data_ingestion import DataIngestionTrainingPipeline
 from lifexp.pipeline.stage2_data_validation import DataValidationTrainingPipeline
 from lifexp.pipeline.stage3_data_transformation import DataTransformationTrainingPipeline
+from lifexp.pipeline.stage4_model_trainer import modelTrainingPipeline
+
 
 
 
@@ -34,6 +36,18 @@ STAGE_NAME = "Data Transformation stage"
 try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
     obj = DataTransformationTrainingPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+STAGE_NAME = "Model Trainer stage"
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = modelTrainingPipeline()
     obj.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
 except Exception as e:

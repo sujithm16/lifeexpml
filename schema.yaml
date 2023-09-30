@@ -2,7 +2,6 @@ COLUMNS:
   Country: object 
   Year: int64  
   Status: object 
-  Life expectancy : float64
   Adult Mortality: float64
   infant deaths: int64  
   Alcohol: float64
@@ -21,6 +20,7 @@ COLUMNS:
   thinness 5-9 years: float64
   Income composition of resources: float64
   Schooling: float64
+  Life expectancy : float64
 
 TARGET:
-  name: Life expectancy 
+  name: Life_expectancy

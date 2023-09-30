@@ -20,6 +20,9 @@ class DataTransformation:
         data['Status'] = le.fit_transform(data['Status'])
         logger.info(data['Status'])
         logger.info(data['Country'])
+        
+        data.rename(columns={'Life expectancy ':'Life_expectancy'},inplace=True)
+
     
         train, test = train_test_split(data)
 
