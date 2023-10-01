@@ -20,7 +20,7 @@ list_of_files = [
     f"{project_name}/constants/__init__.py",
     "config/config.yaml",
     "params.yaml",
-    "app.py",
+    "streamlit_app.py",
     "main.py",
     "Dockerfile",
     "requirements.txt",

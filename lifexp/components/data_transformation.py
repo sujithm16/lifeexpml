@@ -21,9 +21,15 @@ class DataTransformation:
         logger.info(data['Status'])
         logger.info(data['Country'])
         
-        data.rename(columns={'Life expectancy ':'Life_expectancy'},inplace=True)
-
-    
+        data.rename(columns={'Life expectancy ':'Life_expectancy',"Adult Mortality": 'Adult_Mortality',
+                            'infant deaths': 'infant_deaths','percentage expenditure': 'percentage_expenditure',
+                            'Hepatitis B': 'Hepatitis_B','Measles ': 'Measles','BMI ': 'BMI',
+                            'under-five deaths ': 'under_five_deaths','Total expenditure': 'Total_expenditure',
+                            'Diphtheria  ': 'Diphtheria','HIV/AIDS': 'HIV_AIDS',
+                            'thinness  1-19 years': 'thinness_1_19_years',
+                            'thinness 5-9 years': 'thinness_5_9_years',
+                            'Income composition of resources': 'Income_composition_of_resources'},inplace=True)
+        
         train, test = train_test_split(data)
 
         train.to_csv(os.path.join(self.config.root_dir, "train.csv"),index = False)
